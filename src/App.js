@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Signup from "./components/Authorization/Signup";
+import Login from "./components/Authorization/Login";
 //Import Styles
 import "./styles/app.scss";
 //Adding Components
@@ -70,6 +71,7 @@ function App() {
       </div> */}
 
       <Route path="/signup" exact component={Signup} />
+      <Route path="/login" exact component={Login} />
     </Router>
   );
 }
