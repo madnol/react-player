@@ -1,6 +1,7 @@
-import { SEARCH_ALBUMS } from "../actions/types";
+import { SEARCH_ALBUMS, SET_CURRENT_ALBUM } from "../actions/types";
 
 export default function (state = {}, { type, payload }) {
+  console.log(type);
   switch (type) {
     case "ADD_SONG_TO_PLAYLIST":
       return {
@@ -16,6 +17,11 @@ export default function (state = {}, { type, payload }) {
       return {
         ...state,
         results: payload,
+      };
+    case SET_CURRENT_ALBUM:
+      return {
+        ...state,
+        currentAlbum: payload,
       };
 
     default:
