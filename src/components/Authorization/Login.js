@@ -1,14 +1,15 @@
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-
 import isEmail from "validator/lib/isEmail";
 import isStrongPassword from "validator/lib/isStrongPassword";
 import isEmpty from "validator/lib/isEmpty";
+import { loggingIn } from "../../actions/users";
+import { useDispatch, useSelector } from "react-redux";
 
 import { showSuccessMessage, showErrorMessage } from "../helpers/messages";
 
-const Signup = () => {
+const Signup = ({ history }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -16,12 +17,14 @@ const Signup = () => {
     errorMsg: "",
     loading: false,
   });
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
 
   const [error, setError] = useState({});
 
   const { email, password, successMsg, errorMsg, loading } = formData;
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -30,7 +33,7 @@ const Signup = () => {
     });
   };
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     //Validate inputs
@@ -53,24 +56,30 @@ const Signup = () => {
         successMsg: "",
       });
     } else {
-      let { name, lastname, email, password } = formData;
-      let body = { name, lastname, email, password };
-
-      const response = await Signup(body);
-      if (response.errors) {
-        setFormData({
-          ...formData,
-          errorMsg: response.errors,
-          successMsg: "",
-        });
-      } else {
-        setFormData({
-          email: "",
-          password: "",
-          errorMsg: "",
-          successMsg: response.data,
-        });
+      let { email, password } = formData;
+      let body = { email, password };
+      console.log(body);
+      await dispatch(loggingIn(body));
+      if (user) {
+        history.push("/home");
       }
+      console.log(user);
+
+      // const response = await Signup(body);
+      // if (response.errors) {
+      //   setFormData({
+      //     ...formData,
+      //     errorMsg: response.errors,
+      //     successMsg: "",
+      //   });
+      // } else {
+      //   setFormData({
+      //     email: "",
+      //     password: "",
+      //     errorMsg: "",
+      //     successMsg: response.data,
+      //   });
+      // }
     }
   };
 
@@ -78,7 +87,7 @@ const Signup = () => {
     return (
       <Form
         onSubmit={handleSubmit}
-        className="login__form     p-4 rounded rounded-5"
+        className="login__form     p-4 mt-5 rounded rounded-5"
         noValidate
       >
         <Form.Group controlId="formGroupEmail">
@@ -87,7 +96,7 @@ const Signup = () => {
             onChange={handleChange}
             name="email"
             value={email}
-            type="email"
+            type="text"
             placeholder="example@xyz.com"
           />
         </Form.Group>

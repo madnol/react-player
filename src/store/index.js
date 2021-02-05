@@ -11,6 +11,7 @@ const initialState = {
   },
   user: {
     username: null,
+    currentUser: "",
   },
 };
 
