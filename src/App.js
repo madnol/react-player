@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Signup from "./components/Authorization/Signup";
 //Import Styles
@@ -33,7 +34,7 @@ function App() {
 
   return (
     <Router>
-      <div className="App">
+      {/* <div className="App">
         <Nav
           libraryStatus={libraryStatus}
           setLibraryStatus={setLibraryStatus}
@@ -66,9 +67,9 @@ function App() {
           ref={audioRef}
           src={currentSong.audio}
         ></audio>
-      </div>
+      </div> */}
 
-      <Route path="/signin" exact component={Signup} />
+      <Route path="/signup" exact component={Signup} />
     </Router>
   );
 }
