@@ -1,4 +1,6 @@
 import React, { useState, useRef } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Signup from "./components/Authorization/Signup";
 //Import Styles
 import "./styles/app.scss";
 //Adding Components
@@ -30,37 +32,44 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <Nav libraryStatus={libraryStatus} setLibraryStatus={setLibraryStatus} />
+    <Router>
+      <div className="App">
+        <Nav
+          libraryStatus={libraryStatus}
+          setLibraryStatus={setLibraryStatus}
+        />
 
-      <Framer />
-      <Song currentSong={currentSong} isPlaying={isPlaying} />
-      <Player
-        audioRef={audioRef}
-        setIsPlaying={setIsPlaying}
-        isPlaying={isPlaying}
-        currentSong={currentSong}
-        songInfo={songInfo}
-        setSongInfo={setSongInfo}
-        songs={songs}
-        setCurrentSong={setCurrentSong}
-      />
-      <Library
-        songs={songs}
-        currentSong={currentSong}
-        setCurrentSong={setCurrentSong}
-        isPlaying={isPlaying}
-        audioRef={audioRef}
-        setSongs={setSongs}
-        libraryStatus={libraryStatus}
-      />
-      <audio
-        onTimeUpdate={timeUpdateHandler}
-        onLoadedMetadata={timeUpdateHandler}
-        ref={audioRef}
-        src={currentSong.audio}
-      ></audio>
-    </div>
+        <Framer />
+        <Song currentSong={currentSong} isPlaying={isPlaying} />
+        <Player
+          audioRef={audioRef}
+          setIsPlaying={setIsPlaying}
+          isPlaying={isPlaying}
+          currentSong={currentSong}
+          songInfo={songInfo}
+          setSongInfo={setSongInfo}
+          songs={songs}
+          setCurrentSong={setCurrentSong}
+        />
+        <Library
+          songs={songs}
+          currentSong={currentSong}
+          setCurrentSong={setCurrentSong}
+          isPlaying={isPlaying}
+          audioRef={audioRef}
+          setSongs={setSongs}
+          libraryStatus={libraryStatus}
+        />
+        <audio
+          onTimeUpdate={timeUpdateHandler}
+          onLoadedMetadata={timeUpdateHandler}
+          ref={audioRef}
+          src={currentSong.audio}
+        ></audio>
+      </div>
+
+      <Route path="/signin" exact component={Signup} />
+    </Router>
   );
 }
 
