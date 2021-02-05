@@ -7,7 +7,6 @@ const composedEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const initialState = {
   album: {
-    songs: [],
     error: false,
   },
   user: {

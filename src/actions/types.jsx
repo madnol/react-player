@@ -1,0 +1,1 @@
+export const SEARCH_ALBUMS = 'SEARCH_ALBUMS'
