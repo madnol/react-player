@@ -5,13 +5,25 @@ import Album from "./pages/Album";
 import Home from "./pages/Home";
 //Import Styles
 import "./styles/app.scss";
+import { Container } from "react-bootstrap";
+import Favorites from "./pages/Favorites";
 
 function App() {
   return (
     <>
-      <NavBar />
-      <Route exact path="/album/:id" component={Album} />
-      <Route exact path="/home" component={Home} />
+      <Switch>
+        <Route path="/" exact component={Login} />
+
+        <Container fluid>
+          <NavBar />
+
+          <Route path="/signup" exact component={Signup} />
+
+          <Route exact path="/album/:id" component={Album} />
+          <Route exact path="/home" component={Home} />
+          <Route exact path="/favorites" component={Favorites} />
+        </Container>
+      </Switch>
     </>
   );
 }

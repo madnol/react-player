@@ -1,5 +1,6 @@
 import React from "react";
 import LibrarySong from "./LibrarySong";
+import { useSelector } from "react-redux";
 const Library = ({
   songs,
   setSongs,
@@ -9,11 +10,14 @@ const Library = ({
   currentSong,
   libraryStatus,
 }) => {
+  const album = useSelector((state) => state.album);
+  console.log(album);
+
   return (
     <div className={`library ${libraryStatus ? "active-library" : ""}`}>
       <h2>Library</h2>
       <div className="library-songs">
-        {songs.map(song => (
+        {songs.map((song) => (
           <LibrarySong
             currentSong={currentSong}
             setCurrentSong={setCurrentSong}
