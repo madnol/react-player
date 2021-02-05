@@ -1,0 +1,38 @@
+.song-container {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  img {
+    width: 20%;
+    border-radius: 50%;
+    &.rotation {
+      animation-name: rotate-center;
+      animation-duration: 30s;
+      animation-timing-function: linear;
+      animation-delay: 0s;
+      animation-iteration-count: infinite;
+      animation-direction: normal;
+      animation-fill-mode: none;
+    }
+    @keyframes rotate-center {
+      0% {
+        -webkit-transform: rotate(0);
+        transform: rotate(0);
+      }
+
+      100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+  }
+
+  h2 {
+    padding: 3rem 1rem 1rem 1rem;
+  }
+  h3 {
+    font-size: 1rem;
+  }
+}
