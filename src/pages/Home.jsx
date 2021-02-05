@@ -4,17 +4,29 @@ import SearchIcon from "@material-ui/icons/Search";
 import { useState } from "react";
 import { useEffect } from "react";
 import { connect } from "react-redux";
+import { searchAlbum } from "../actions/songs";
 
-// const mapDispatchToProps = (dispatch) => {};
-// const mapStateToProps = (state) => {};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    searchAlbumAction: (query) => dispatch(searchAlbum(query)),
+  };
+};
 
-const Home = ({}) => {
+const mapStateToProps = (state) => {
+  return state;
+};
+
+const Home = ({ searchAlbumAction, album }) => {
   const [searchAlbum, setSearchAlbum] = useState("");
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    console.log(album);
+  }, []);
 
   const handleSearch = async () => {
     try {
+      const search = await searchAlbumAction(searchAlbum);
+      console.log(album);
     } catch (err) {
       console.log(err);
     }
@@ -52,5 +64,4 @@ const Home = ({}) => {
   );
 };
 
-export default Home;
-// connect(mapStateToProps, mapDispatchToProps);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

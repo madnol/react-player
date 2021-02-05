@@ -1,9 +1,9 @@
-export default function (state = {}, action) {
-  switch (action.type) {
+export default function (state = {}, { type, payload }) {
+  switch (type) {
     case "SET_USER_NAME":
       return {
         ...state,
-        username: action.payload,
+        username: payload,
       };
 
     default:

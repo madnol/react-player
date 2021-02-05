@@ -1,14 +1,21 @@
-export default function (state = {}, action) {
-  switch (action.type) {
+import { SEARCH_ALBUMS } from "../actions/types";
+
+export default function (state = {}, { type, payload }) {
+  switch (type) {
     case "ADD_SONG_TO_PLAYLIST":
       return {
         ...state,
-        songs: state.songs.concat(action.payload),
+        songs: state.songs.concat(payload),
       };
     case "REMOVE_SONG_FROM_PLAYLIST":
       return {
         ...state,
-        songs: [...state.songs.filter((songId) => songId !== action.payload)],
+        songs: [...state.songs.filter((songId) => songId !== payload)],
+      };
+    case SEARCH_ALBUMS:
+      return {
+        ...state,
+        results: payload,
       };
 
     default:
