@@ -20,7 +20,7 @@ const mapStateToProps = (state) => {
   return state;
 };
 
-const Home = ({ searchAlbumAction, album, setCurrentAlbum }) => {
+const Home = ({ searchAlbumAction, album,user, setCurrentAlbum }) => {
   const [searchAlbum, setSearchAlbum] = useState("");
 
   useEffect(() => {
@@ -45,39 +45,14 @@ const Home = ({ searchAlbumAction, album, setCurrentAlbum }) => {
 
   return (
     <div className={`searchPage ${!searchAlbum ? "no-results" : ""}`}>
-      <div className="searchPage__box">
-        <h1>Search any album...</h1>
-        <div className="searchPage__inputs">
-          <div>
-            <SearchIcon />
-            <input
-              type="text"
-              placeholder="Search an album..."
-              name="album"
-              onChange={(e) => setSearchAlbum(e.target.value)}
-            />
-          </div>
-
-          <span className="searchPage__cta-btn" onClick={handleSearch}>
-            {searchAlbum ? "Search Albums " : "New Research"}
-          </span>
-        </div>
-      </div>
-      <div>
-        <b>
-          {searchAlbum && `Results for ${searchAlbum}`}
-          {/* here we will render an error message{error_msg && error_msg} */}
-        </b>
-      </div>
+     
       <Row>
-        {album.results &&
-          album.results.map((res) => (
-            <Col sm={6} md={2}>
+        {user.favorites &&
+          user.favorites.map((res) => (
+            <Col sm={6} md={6}>
               {/* // <Link to={`/album/${res.album.id}`} onClick={()=>handleCurrentAlbum(res.album.id)}> */}
-              <Link
-                onClick={() => handleCurrentAlbum(res.album.id)}
-              >
-                <Card album={res.album} />
+              <Link onClick={() => handleCurrentAlbum(res.album.id)}>
+                <Card album={res} />
               </Link>
             </Col>
           ))}

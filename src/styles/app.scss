@@ -21,6 +21,14 @@ h4 {
   font-weight: 400;
   color: rgb(100, 100, 100);
 }
+.card {
+  border: none !important;
+}
+a {
+  color: black !important;
+  text-decoration: none !important;
+}
+
 
 @import "./song";
 @import "./player";

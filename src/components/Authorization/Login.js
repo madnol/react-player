@@ -6,6 +6,7 @@ import isStrongPassword from "validator/lib/isStrongPassword";
 import isEmpty from "validator/lib/isEmpty";
 import { loggingIn } from "../../actions/users";
 import { useDispatch, useSelector } from "react-redux";
+import AppsIcon from "@material-ui/icons/Apps";
 
 import { showSuccessMessage, showErrorMessage } from "../helpers/messages";
 
@@ -131,7 +132,11 @@ const Signup = ({ history }) => {
   return (
     <div className="signup-form d-block my-3">
       <Container>
-        <h3 className="text-center">Login</h3>
+        <h3 className="text-center">
+          Login
+          <br /> <AppsIcon />
+        </h3>
+
         <Row>
           <Col md={12}>{showSignupFrom()}</Col>
           {errorMsg && (

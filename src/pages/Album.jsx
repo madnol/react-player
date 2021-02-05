@@ -9,6 +9,7 @@ import Nav from "../components/Nav";
 import Framer from "../components/Framer";
 //Import Util
 import data from "../util";
+import {useSelector} from 'react-redux'
 
 function Album() {
   //Ref
@@ -28,6 +29,8 @@ function Album() {
     const duration = e.target.duration;
     setSongInfo({ ...songInfo, currentTime: current, duration });
   };
+  const album = useSelector((state) => state.album.currentAlbum)
+  console.log(album.currentAlbum)
 
   return (
     <div className="App">

@@ -1,5 +1,4 @@
-import { LOGIN } from "../actions/types";
-
+import { LOGIN, ADD_FAVORITE, REMOVE_FAVORITE } from "../actions/types";
 
 export default function (state = {}, { type, payload }) {
   switch (type) {
@@ -12,6 +11,16 @@ export default function (state = {}, { type, payload }) {
       return {
         ...state,
         currentUser: payload,
+      };
+    case ADD_FAVORITE:
+      return {
+        ...state,
+        favorites: [...state.favorites, payload],
+      };
+    case REMOVE_FAVORITE:
+      return {
+        ...state,
+        favorites: state.favorites.filter((fav) => fav.id != payload.id),
       };
 
     default:

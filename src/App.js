@@ -10,6 +10,7 @@ import Home from "./pages/Home";
 //Import Styles
 import "./styles/app.scss";
 import { Container } from "react-bootstrap";
+import Favorites from "./pages/Favorites";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
 
           <Route exact path="/album/:id" component={Album} />
           <Route exact path="/home" component={Home} />
+          <Route exact path="/favorites" component={Favorites} />
         </Container>
       </Switch>
     </>
