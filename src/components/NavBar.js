@@ -4,6 +4,7 @@ import { withRouter, Link } from "react-router-dom";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import AppsIcon from "@material-ui/icons/Apps";
 import "../styles/_navbar.scss";
+import { useSelector } from "react-redux";
 
 // const mapStateToProps = (state) => {
 //   return state;
@@ -14,16 +15,18 @@ import "../styles/_navbar.scss";
 //   };
 // };
 const NavBar = ({}) => {
+  const user = useSelector((state) => state.user);
   return (
     <Navbar className="navBar">
       <Link to="/" className="navBar__logo">
         <Navbar.Brand href="#home">
-          <AppsIcon /> 
+          <AppsIcon />
         </Navbar.Brand>
       </Link>
       <Nav className="ml-auto">
         {/* <Nav.Link href="#home">Home</Nav.Link> */}
       </Nav>
+      {user.currentUser && user.currentUser.name}{" "}
       <Link to="/favorites">
         <FavoriteBorderIcon />
       </Link>
