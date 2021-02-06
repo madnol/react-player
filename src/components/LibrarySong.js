@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const LibrarySong = ({
   song,
@@ -35,17 +35,23 @@ const LibrarySong = ({
     }
   };
 
+  // console.log(song);
+
   return (
-    <div
-      onClick={songSelectHandler}
-      className={`library-song ${song.active ? "selected" : ""}`}
-    >
-      <img src={song.cover} alt={song.name}></img>
-      <div className="song-description">
-        <h3>{song.name}</h3>
-        <h4>{song.artist}</h4>
-      </div>
-    </div>
+    <>
+      {song && (
+        <div
+          onClick={songSelectHandler}
+          className={`library-song ${song.active ? "selected" : ""}`}
+        >
+          <img src={song.album.cover_medium} alt={song.title}></img>
+          <div className="song-description">
+            <h3>{song.title}</h3>
+            <h4>{song.artist.name}</h4>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

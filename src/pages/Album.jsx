@@ -1,4 +1,10 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+
+//Redux
+import { useDispatch, useSelector } from "react-redux";
+import { searchAlbum } from "../actions/songs";
+
 //Import Styles
 import "../styles/app.scss";
 //Adding Components
@@ -10,7 +16,20 @@ import Framer from "../components/Framer";
 //Import Util
 import data from "../util";
 
-function Album() {
+const Album = () => {
+  //Get our data back
+
+  //*Fetching the songs
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(searchAlbum());
+    console.log(album);
+  }, [dispatch]);
+
+  //*Get our data back
+  const album = useSelector(state => state.album);
+
+  // console.log(type);
   //Ref
   const audioRef = useRef(null);
   //State
@@ -33,7 +52,7 @@ function Album() {
     <div className="App">
       <Nav libraryStatus={libraryStatus} setLibraryStatus={setLibraryStatus} />
 
-      <Framer />
+      {/* <Framer /> */}
       <Song currentSong={currentSong} isPlaying={isPlaying} />
       <Player
         audioRef={audioRef}
@@ -47,6 +66,7 @@ function Album() {
       />
       <Library
         songs={songs}
+        // fetchedSongs={song}
         currentSong={currentSong}
         setCurrentSong={setCurrentSong}
         isPlaying={isPlaying}
@@ -62,6 +82,6 @@ function Album() {
       ></audio>
     </div>
   );
-}
+};
 
 export default Album;
